@@ -45,10 +45,12 @@ public class EdDSAPrivateKey implements EdDSAKey, PrivateKey {
                                      EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.CURVE_ED25519_SHA512)));
     }
 
+    @Override
     public String getAlgorithm() {
-        return "EdDSA";
+        return KEY_ALGORITHM;
     }
 
+    @Override
     public String getFormat() {
         return "PKCS#8";
     }
@@ -87,6 +89,7 @@ public class EdDSAPrivateKey implements EdDSAKey, PrivateKey {
      *
      *  @return 49 bytes for Ed25519, null for other curves
      */
+    @Override
     public byte[] getEncoded() {
         if (!edDsaSpec.equals(EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.CURVE_ED25519_SHA512)))
             return null;
@@ -163,6 +166,7 @@ public class EdDSAPrivateKey implements EdDSAKey, PrivateKey {
         }
     }
 
+    @Override
     public EdDSAParameterSpec getParams() {
         return edDsaSpec;
     }
